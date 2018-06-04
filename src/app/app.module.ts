@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { BuyComponent } from './buy/buy.component';
 import { SellComponent } from './sell/sell.component';
 import { BrowseComponent } from './browse/browse.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { BrowseComponent } from './browse/browse.component';
     LoginComponent,
     BuyComponent,
     SellComponent,
-    BrowseComponent
+    BrowseComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
