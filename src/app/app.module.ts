@@ -11,6 +11,9 @@ import { BrowseComponent } from './browse/browse.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 
+import {MatButtonModule, MatToolbarModule} from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,11 +22,14 @@ import { NavigationComponent } from './navigation/navigation.component';
     BuyComponent,
     SellComponent,
     BrowseComponent,
-    NavigationComponent
+	NavigationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+	MatButtonModule,
+	MatFormFieldModule,
+	MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

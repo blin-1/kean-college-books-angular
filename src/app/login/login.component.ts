@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  buttonText: string = "Google Login";
+	
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onLogin() {	  
+	
+	this.buttonText = "Logged In";
+	
   }
-
 }
