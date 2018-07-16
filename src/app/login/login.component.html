@@ -1,8 +1,13 @@
-<div class="example-container">
-<!--   <mat-form-field>
-    <input matInput placeholder="e-mail">
-  </mat-form-field> -->
+<form class="example-form">
+  
+  <mat-form-field class="example-full-width">
+    <input matInput [formControl]="username" placeholder="Hello" value="Stranger">
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width">
+    <input matInput [formControl]="email" placeholder="E-mail" value="">
+  </mat-form-field>
+  
+  <a mat-stroked-button  color="primary" (click)="onLogon()"> {{buttonText}}</a>
 
-  <a mat-stroked-button color="secondary" (click)="onLogin()"> {{buttonText}}</a>
-   
-</div>
+</form>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,15 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  buttonText: string = "Google Login";
+  email				: FormControl;
+  username			: FormControl;
+  buttonText		: string = "Google Login";
+  @Output() logon	: EventEmitter<String> = new EventEmitter();
+  @Output() logoff	: EventEmitter<String> = new EventEmitter();
 	
-  constructor() {}
+  constructor() {
+  
+  	this.username = new FormControl();
+  	this.email    = new FormControl();
+  
+  }
 
   ngOnInit() {}
 
-  onLogin() {	  
+  onLogon() {	  
 	
-	this.buttonText = "Logged In";
+	this.buttonText = "Logoff";
+	this.username.setValue("foo");
+	this.email.setValue("foo@foo");
+	this.logon.emit("foo@foo");
 	
   }
+  
 }
