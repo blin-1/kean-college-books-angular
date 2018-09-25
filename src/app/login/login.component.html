@@ -1,13 +1,14 @@
 <form class="example-form">
   
   <mat-form-field class="example-full-width">
-    <input matInput [formControl]="username" placeholder="Hello" value="Stranger">
+    <input matInput [formControl]="username" placeholder="Hello" value={{firstName}}>
   </mat-form-field>
   
   <mat-form-field class="example-full-width">
-    <input matInput [formControl]="email" placeholder="E-mail" value="">
+    <input matInput [formControl]="email" placeholder="E-mail" value="{{eMail}}">
   </mat-form-field>
-  
-  <a mat-stroked-button  color="primary" (click)="onLogon()"> {{buttonText}}</a>
+
+  <a mat-stroked-button  *ngIf="showLogon" color="primary" (click)="onLogon()">Google Logon</a>
+  <a mat-stroked-button  *ngIf="showLogoff" color="primary" (click)="onLogoff()">Google Logoff</a>
 
 </form>

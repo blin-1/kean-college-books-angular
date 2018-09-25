@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-
 
 import { MatButtonModule, MatToolbarModule} from '@angular/material';
 
@@ -31,6 +32,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
 	
 	MatButtonModule,
 	MatToolbarModule,
