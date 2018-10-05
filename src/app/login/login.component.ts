@@ -33,42 +33,37 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
        	
-		var me = this;
-    	var auth2; 		// The Sign-In object.
-    	
+		var me = this;    	
     	var appStart = function() {
     	  gapi.load('auth2', initSigninV2);
     	};
-
+		
     	var initSigninV2 = function() {
     	  
-    	  auth2 = gapi.auth2.init({
-    	      client_id: '',
+    	  me.auth2 = gapi.auth2.init({
+    	      client_id: 'Fill your own here',
     	      scope: 'profile'
     	  });
 
     	  // Listen for sign-in state changes.
-    	  auth2.isSignedIn.listen(signinChanged);
+    	  me.auth2.isSignedIn.listen(signinChanged);
 
     	  // Listen for changes to current user.
-    	  auth2.currentUser.listen(userChanged);
+    	  me.auth2.currentUser.listen(userChanged);
 
     	  // Sign in the user if they are currently signed in.
-    	  if (auth2.isSignedIn.get() == true) {
-    	    auth2.signIn();
+    	  if (me.auth2.isSignedIn.get() == true) {
+    	    me.auth2.signIn();
     	  }
     	  
     	  // Start with the current live values.
     	  refreshValues();
-    	  
-    	  // save reference   
-       	  me.auth2 = auth2;
        	  
     	};
 
     	var refreshValues = function() {
-      	  if (auth2){
-      	    me.setModelState(auth2.isSignedIn.get());
+      	  if (me.auth2){
+      	    me.setModelState(me.auth2.isSignedIn.get());
       	  }
       	};
     	
@@ -77,11 +72,12 @@ export class LoginComponent implements OnInit {
     	};
 
     	var userChanged = function (user) {
-	  	   	if (auth2.isSignedIn.get()){
+	  	   	if (me.auth2.isSignedIn.get()){
 	  	   		me.setModelState(true);
-		   	}else{
-				me.setModelState(false);
 		   	}
+			//else{
+			//	me.setModelState(false);
+		   	//}
     	};
     	
     	appStart();
