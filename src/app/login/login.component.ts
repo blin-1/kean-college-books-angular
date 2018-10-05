@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   showLogoff		: boolean = false;
   firstName			: string = this.defaultName;
   eMail				: string = this.defaultEmail;  
-  
+  auth2				: any;
   @Output() logon	: EventEmitter<String> = new EventEmitter();
   @Output() logoff	: EventEmitter<String> = new EventEmitter();
 	
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-	  
-	    var me = this;
+       	
+		var me = this;
     	var auth2; 		// The Sign-In object.
     	
     	var appStart = function() {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     	var initSigninV2 = function() {
     	  
     	  auth2 = gapi.auth2.init({
-    	      client_id: '', //KeanBooks.classes.Credentials.OATH2_CLIENT_ID,
+    	      client_id: '',
     	      scope: 'profile'
     	  });
 
@@ -62,49 +62,60 @@ export class LoginComponent implements OnInit {
     	  refreshValues();
     	  
     	  // save reference   
-       	  //me.auth2 = auth2;
+       	  me.auth2 = auth2;
        	  
     	};
 
     	var refreshValues = function() {
       	  if (auth2){
-      	    ///            me.setModelState(auth2.isSignedIn.get());
+      	    me.setModelState(auth2.isSignedIn.get());
       	  }
       	};
     	
     	var signinChanged = function (val) {
-    	 ///           me.setModelState(val);
+    	  me.setModelState(val);
     	};
 
     	var userChanged = function (user) {
 	  	   	if (auth2.isSignedIn.get()){
-	  	   		////   me.setModelState(true);
+	  	   		me.setModelState(true);
+		   	}else{
+				me.setModelState(false);
 		   	}
     	};
     	
     	appStart();
+    	
+    }
+        
+	setModelState  (signedIn) {
 		
-	  
-  }
-
-
+		if (!signedIn){
+			this.showLogoff = false;
+			this.showLogon = true;
+			this.firstName = this.defaultName;
+			this.eMail = this.defaultEmail;
+			this.logoff.emit(this.eMail);
+		}else{
+			var googleUser	= this.auth2.currentUser.get();
+			this.showLogoff = true;
+			this.showLogon = false;
+			this.firstName = googleUser.getBasicProfile().getGivenName();
+			this.eMail = googleUser.getBasicProfile().getEmail();
+			this.logon.emit(this.eMail);
+		};
+	}	  
+  
   onLogon() {	  
 	
-	this.showLogoff = true;
-	this.showLogon = false;
-	this.firstName = "Johnny";
-	this.eMail = "johnny@foo.com";
-	this.logon.emit(this.eMail);
+	this.auth2.signIn();
+
 	
   }
   
   onLogoff() {	  
 	
-	this.showLogoff = false;
-	this.showLogon = true;
-	this.firstName = this.defaultName;
-	this.eMail = this.defaultEmail;
-	this.logoff.emit(this.eMail);
+	this.auth2.signOut();
 	
   }
   
