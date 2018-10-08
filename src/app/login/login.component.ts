@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl} from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import { FormControl} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   email				: FormControl;
   username			: FormControl;
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   firstName			: string = this.defaultName;
   eMail				: string = this.defaultEmail;  
   auth2				: any;
+  
   @Output() logon	: EventEmitter<String> = new EventEmitter();
   @Output() logoff	: EventEmitter<String> = new EventEmitter();
 	
@@ -28,84 +29,61 @@ export class LoginComponent implements OnInit {
   
   	this.username = new FormControl();
   	this.email    = new FormControl();
-  
+
+	//Google login (auth2)
+
+	let self = this;
+	
+	let signinChanged = function (signedIn) {
+	  self.setState(signedIn);
+	};
+
+	let userChanged = function () {
+		if (self.auth2.isSignedIn.get()){
+			self.setState(true);
+		}
+	};	
+			
+	gapi.load('auth2', function() {
+	  
+	  self.auth2 = gapi.auth2.init({
+		  client_id: '877249354252-6rql5amr0or5o3rhf2i1n0gq558b1jmu.apps.googleusercontent.com',
+		  scope: 'profile'
+	  });
+	  
+	  self.auth2.isSignedIn.listen(signinChanged);
+	  self.auth2.currentUser.listen(userChanged);
+
+	  self.setState(self.auth2.isSignedIn.get());
+
+	});
+
+	// End Google login
+	
   }
-
-  ngOnInit() {
-       	
-		var me = this;    	
-    	var appStart = function() {
-    	  gapi.load('auth2', initSigninV2);
-    	};
-		
-    	var initSigninV2 = function() {
-    	  
-    	  me.auth2 = gapi.auth2.init({
-    	      client_id: 'Fill your own here',
-    	      scope: 'profile'
-    	  });
-
-    	  // Listen for sign-in state changes.
-    	  me.auth2.isSignedIn.listen(signinChanged);
-
-    	  // Listen for changes to current user.
-    	  me.auth2.currentUser.listen(userChanged);
-
-    	  // Sign in the user if they are currently signed in.
-    	  if (me.auth2.isSignedIn.get() == true) {
-    	    me.auth2.signIn();
-    	  }
-    	  
-    	  // Start with the current live values.
-    	  refreshValues();
-       	  
-    	};
-
-    	var refreshValues = function() {
-      	  if (me.auth2){
-      	    me.setModelState(me.auth2.isSignedIn.get());
-      	  }
-      	};
-    	
-    	var signinChanged = function (val) {
-    	  me.setModelState(val);
-    	};
-
-    	var userChanged = function (user) {
-	  	   	if (me.auth2.isSignedIn.get()){
-	  	   		me.setModelState(true);
-		   	}
-			//else{
-			//	me.setModelState(false);
-		   	//}
-    	};
-    	
-    	appStart();
-    	
-    }
         
-	setModelState  (signedIn) {
+  setState(signedIn) {
 		
-		if (!signedIn){
-			this.showLogoff = false;
-			this.showLogon = true;
-			this.firstName = this.defaultName;
-			this.eMail = this.defaultEmail;
-			this.logoff.emit(this.eMail);
-		}else{
-			var googleUser	= this.auth2.currentUser.get();
-			this.showLogoff = true;
-			this.showLogon = false;
-			this.firstName = googleUser.getBasicProfile().getGivenName();
-			this.eMail = googleUser.getBasicProfile().getEmail();
-			this.logon.emit(this.eMail);
-		};
-	}	  
+	if (!signedIn){
+		this.showLogoff = false;
+		this.showLogon = true;
+		this.firstName = this.defaultName;
+		this.eMail = this.defaultEmail;
+		this.logoff.emit(this.eMail);
+	}else{
+		let googleUser	= this.auth2.currentUser.get();
+		this.showLogoff = true;
+		this.showLogon = false;
+		this.firstName = googleUser.getBasicProfile().getGivenName();
+		this.eMail = googleUser.getBasicProfile().getEmail();
+		this.logon.emit(this.eMail);
+	};
+  
+  }	  
   
   onLogon() {	  
 	
 	this.auth2.signIn();
-
 	
   }
   
