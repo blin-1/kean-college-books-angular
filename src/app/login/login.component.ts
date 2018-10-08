@@ -38,15 +38,13 @@ export class LoginComponent {
 		  self.setState();
 		};
 		self.auth2 = gapi.auth2.init({
-		  client_id: 'Insert your key here',
+		  client_id: 'xxx',
 		  scope: 'profile'
 		});
 		self.auth2.isSignedIn.listen (signinChanged);
 		self.auth2.currentUser.listen(signinChanged);
 		self.setState();
 	});
-	
-	// End Google login
 	
   }
         
