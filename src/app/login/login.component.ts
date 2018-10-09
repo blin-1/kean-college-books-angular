@@ -4,8 +4,8 @@ import { FormControl} from '@angular/forms';
 @Component({
 
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
+ 
 })
 
 export class LoginComponent {
@@ -19,15 +19,15 @@ export class LoginComponent {
   showLogon			: boolean = true;
   showLogoff		: boolean = false;
 
-  auth2				: any;
+  auth2				: any; //this will hold our Google sign-In object
   
   @Output() logon	: EventEmitter<String> = new EventEmitter();
   @Output() logoff	: EventEmitter<String> = new EventEmitter();
 	
   constructor() {
   
-  	this.username = new FormControl();
-  	this.email    = new FormControl();
+  	this.username = new FormControl({value: null, disabled: true}); // value is required here for some reason
+  	this.email    = new FormControl({value: null, disabled: true});
 
 	// begin Google login (auth2)
 
@@ -66,8 +66,8 @@ export class LoginComponent {
 	if (!this.auth2.isSignedIn.get()){
 		this.showLogoff = false;
 		this.showLogon = true;
-		this.firstName = '';
-		this.eMail = '';
+		this.firstName = null;
+		this.eMail = null;
 		this.logoff.emit(this.eMail);
 	}else{
 		let googleUser	= this.auth2.currentUser.get();

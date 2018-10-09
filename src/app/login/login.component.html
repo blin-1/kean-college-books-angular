@@ -1,6 +1,6 @@
 <mat-card>
   
-	  <mat-form-field appearance="outline" class="kean-full-width">
+	  <mat-form-field  appearance="outline" class="kean-full-width">
 		<mat-label>Name</mat-label>
 		<input matInput [formControl]="username" value={{firstName}}>
 	  </mat-form-field>
@@ -11,7 +11,7 @@
 	  </mat-form-field>
 	  
 	  <mat-card-actions class="kean-card-actions">
-		<a mat-stroked-button  *ngIf="showLogon" color="primary" (click)="onLogon()">Google Logon</a>
+		<a mat-stroked-button  *ngIf="showLogon"  color="primary" (click)="onLogon() ">Google Logon</a>
 		<a mat-stroked-button  *ngIf="showLogoff" color="primary" (click)="onLogoff()">Google Logoff</a>
 	  </mat-card-actions>
 	
