@@ -1,17 +1,20 @@
-
-<form class="example-form">
+<mat-card>
   
-  <mat-form-field class="example-full-width">
-    <input matInput [formControl]="username" placeholder="Hello" value={{firstName}}>
-  </mat-form-field>
-  
-  <mat-form-field class="example-full-width">
-    <input matInput [formControl]="email" placeholder="E-mail" value="{{eMail}}">
-  </mat-form-field>
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Name</mat-label>
+		<input matInput [formControl]="username" value={{firstName}}>
+	  </mat-form-field>
 
-  <a mat-stroked-button  *ngIf="showLogon" color="primary" (click)="onLogon()">Google Logon</a>
-  <a mat-stroked-button  *ngIf="showLogoff" color="primary" (click)="onLogoff()">Google Logoff</a>
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>E-Mail</mat-label>
+		<input matInput [formControl]="email" value={{eMail}} type="email">
+	  </mat-form-field>
+	  
+	  <mat-card-actions class="kean-card-actions">
+		<a mat-stroked-button  *ngIf="showLogon" color="primary" (click)="onLogon()">Google Logon</a>
+		<a mat-stroked-button  *ngIf="showLogoff" color="primary" (click)="onLogoff()">Google Logoff</a>
+	  </mat-card-actions>
+	
 
-</form>
-
+</mat-card>
 

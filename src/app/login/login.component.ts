@@ -13,13 +13,12 @@ export class LoginComponent {
   email				: FormControl;
   username			: FormControl;
   
-  defaultName		: string = "Stranger";
-  defaultEmail		: string = "Unknown"
+  eMail				: string;  // bindings
+  firstName			: string;  // for FormControl
   
   showLogon			: boolean = true;
   showLogoff		: boolean = false;
-  firstName			: string = this.defaultName;
-  eMail				: string = this.defaultEmail;  
+
   auth2				: any;
   
   @Output() logon	: EventEmitter<String> = new EventEmitter();
@@ -30,7 +29,7 @@ export class LoginComponent {
   	this.username = new FormControl();
   	this.email    = new FormControl();
 
-	//Google login (auth2)
+	// begin Google login (auth2)
 
 	let self = this;	
 	gapi.load('auth2', function() {
@@ -38,13 +37,15 @@ export class LoginComponent {
 		  self.setState();
 		};
 		self.auth2 = gapi.auth2.init({
-		  client_id: 'xxx',
+		  client_id: '',
 		  scope: 'profile'
 		});
 		self.auth2.isSignedIn.listen (signinChanged);
 		self.auth2.currentUser.listen(signinChanged);
 		self.setState();
 	});
+	
+	// end Google login (auth2)
 	
   }
         
@@ -65,8 +66,8 @@ export class LoginComponent {
 	if (!this.auth2.isSignedIn.get()){
 		this.showLogoff = false;
 		this.showLogon = true;
-		this.firstName = this.defaultName;
-		this.eMail = this.defaultEmail;
+		this.firstName = '';
+		this.eMail = '';
 		this.logoff.emit(this.eMail);
 	}else{
 		let googleUser	= this.auth2.currentUser.get();

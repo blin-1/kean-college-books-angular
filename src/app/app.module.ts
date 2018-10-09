@@ -4,8 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MatButtonModule, MatToolbarModule} from '@angular/material';
-
+import { MatButtonModule, MatToolbarModule, MatCardModule} from '@angular/material';
 import { MatInputModule} from '@angular/material';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -37,6 +36,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 	MatButtonModule,
 	MatToolbarModule,
 	
+	MatCardModule,
 	MatFormFieldModule,
 	MatInputModule,
 	FormsModule,
