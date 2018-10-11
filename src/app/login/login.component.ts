@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl} from '@angular/forms';
 
@@ -37,7 +38,7 @@ export class LoginComponent {
 		  self.setState();
 		};
 		self.auth2 = gapi.auth2.init({
-		  client_id: '',
+		  client_id: environment.OATH2_CLIENT_ID,
 		  scope: 'profile'
 		});
 		self.auth2.isSignedIn.listen (signinChanged);
