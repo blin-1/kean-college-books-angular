@@ -4,7 +4,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 import { BuyComponent } from './buy/buy.component';
 import { SellComponent } from './sell/sell.component';
-import { BrowseComponent } from './browse/browse.component';
 
 const routes: Routes = [
     {
@@ -17,7 +16,7 @@ const routes: Routes = [
     },
     {
         path: 'browse',
-        component: BrowseComponent
+        loadChildren: "./browse/browse.module#BrowseModule"
     },
 	{
         path: 'buy',
