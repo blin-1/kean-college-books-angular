@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+	production: false,
+	OATH2_CLIENT_ID : '877249354252'
 };
 
 /*
