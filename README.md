@@ -4,11 +4,26 @@ This project demonstrates the use of MVVM model with Angular 6 and implementatio
 It may be viewed at https://college-books-angular.herokuapp.com <br>
 Project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7. <br>
 
+
+## NB
+This is a work in progress
+
+
 ## Dependencies
 
 npm i --save @types/gapi<br>
 npm i --save @types/gapi.auth2<br>
 npm i --save @angular/material<br>
+
+<br>
+<p>You will also need to obtain Google auth2 credentials at https://console.developers.google.com/apis/credentials and update environments/environment.ts with it:
+</p>
+<br>
+
+export const environment = {
+	OATH2_CLIENT_ID : 'xxxxxxxxxxxxxx.apps.googleusercontent.com'
+}; 
+<br>
 
 ## Development server
 
