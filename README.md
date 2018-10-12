@@ -1,8 +1,14 @@
 # kean-college-books-angular
 
 This project demonstrates the use of MVVM model with Angular 6 and implementation of Google web login<br>
-It may be viewed at https://college-books-angular.herokuapp.com/ (not yet :)<br>
+It may be viewed at https://college-books-angular.herokuapp.com <br>
 Project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7. <br>
+
+## Dependencies
+
+npm i --save @types/gapi<br>
+npm i --save @types/gapi.auth2<br>
+npm i --save @angular/material<br>
 
 ## Development server
 
