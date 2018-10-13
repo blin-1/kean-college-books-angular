@@ -11,6 +11,7 @@ This is a work in progress
 
 ## Dependencies
 
+npm i --save gapi<br>
 npm i --save @types/gapi<br>
 npm i --save @types/gapi.auth2<br>
 npm i --save @angular/material<br>
