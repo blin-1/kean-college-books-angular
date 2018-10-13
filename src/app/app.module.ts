@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
-import { MatButtonModule, MatToolbarModule} from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatCardModule} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -14,6 +14,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     AppComponent,
     NavigationComponent
   ],
+  
+  // NOTE : Card and Button Modules are reimported in each submodule that uses them 
+  // for module encapsulation  
   imports: [
     
     AppRoutingModule,
@@ -21,7 +24,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserAnimationsModule,
 
 	MatButtonModule,
-	MatToolbarModule
+	MatToolbarModule,
+	MatCardModule
 	
   ],
   providers: [],
