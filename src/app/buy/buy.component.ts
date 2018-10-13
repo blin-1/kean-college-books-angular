@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl} from '@angular/forms';
 
+import { Book  } from '../models/book.model';
+import { Bid   } from '../models/bid.model';
+import { Offer } from '../models/offer.model';
+
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
@@ -16,10 +20,19 @@ export class BuyComponent implements OnInit {
   fc_sellerNotes		: FormControl = new FormControl({value: null, disabled: true});
   fc_notes				: FormControl = new FormControl({value: null, disabled: true});
     
-    
-  constructor() { }
+  book	: Book = new Book();
+  bid	: Bid  = new Bid();
+  ask	: Offer = new Offer(); 
+   
+  constructor() {
+  
+  	//this.book.title = "foobar";
+  
+  }
 
   ngOnInit() {
   }
 
+  onBuy() {
+  }
 }

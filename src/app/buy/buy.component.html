@@ -2,37 +2,37 @@
   
 	  <mat-form-field  appearance="outline" class="kean-full-width">
 		<mat-label>ISBN</mat-label>
-		<input matInput [formControl]="fc_isbn" value={{isbn}}>
+		<input matInput [formControl]="fc_isbn" value={{book.id}}>
 	  </mat-form-field>
 
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>Title</mat-label>
-		<input matInput [formControl]="fc_title" value={{title}}>
+		<input matInput [formControl]="fc_title" value={{book.title}}>
 	  </mat-form-field>
 	  
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>Author</mat-label>
-		<input matInput [formControl]="fc_author" value={{author}}>
+		<input matInput [formControl]="fc_author" value={{book.author}}>
 	  </mat-form-field>
 	  
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>Edition</mat-label>
-		<input matInput [formControl]="fc_edition" value={{edition}}>
+		<input matInput [formControl]="fc_edition" value={{book.edition}}>
 	  </mat-form-field>
 	  
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>Asking Price</mat-label>
-		<input matInput [formControl]="fc_askingPrice" value={{askingPrice}}>
+		<input matInput [formControl]="fc_askingPrice" value={{ask.price}}>
 	  </mat-form-field>
 	  
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>Seller Notes</mat-label>
-		<input matInput [formControl]="fc_sellerNotes" value={{sellerNotes}}>
+		<input matInput [formControl]="fc_sellerNotes" value={{ask.notes}}>
 	  </mat-form-field>
 	  
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>Notes</mat-label>
-		<input matInput [formControl]="fc_notes" value={{notes}}>
+		<input matInput [formControl]="fc_notes" value={{bid.notes}}>
 	  </mat-form-field>
 	  
 	  
