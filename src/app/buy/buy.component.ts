@@ -12,21 +12,21 @@ import { Offer } from '../models/offer.model';
 })
 export class BuyComponent implements OnInit {
   
-  fc_isbn				: FormControl = new FormControl({value: null, disabled: true});
-  fc_title				: FormControl = new FormControl({value: null, disabled: true});
-  fc_author				: FormControl = new FormControl({value: null, disabled: true});
-  fc_edition			: FormControl = new FormControl({value: null, disabled: true});
-  fc_askingPrice		: FormControl = new FormControl({value: null, disabled: true});
-  fc_sellerNotes		: FormControl = new FormControl({value: null, disabled: true});
-  fc_notes				: FormControl = new FormControl({value: null, disabled: true});
+  id				: FormControl = new FormControl({value: null, disabled: true});
+  title				: FormControl = new FormControl({value: null, disabled: true});
+  author			: FormControl = new FormControl({value: null, disabled: true});
+  edition			: FormControl = new FormControl({value: null, disabled: true});
+  askingPrice		: FormControl = new FormControl({value: null, disabled: true});
+  sellerNotes		: FormControl = new FormControl({value: null, disabled: true});
+  notes				: FormControl = new FormControl();
     
-  book	: Book = new Book();
-  bid	: Bid  = new Bid();
+  book	: Book  = new Book();
+  bid	: Bid   = new Bid();
   ask	: Offer = new Offer(); 
    
   constructor() {
   
-  	//this.book.title = "foobar";
+  	this.book.title = "Please select a book from the 'browse' section";
   
   }
 
