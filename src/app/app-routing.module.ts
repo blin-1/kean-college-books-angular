@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { LoginComponent } from './login/login.component';
-import { BuyComponent } from './buy/buy.component';
-import { SellComponent } from './sell/sell.component';
 
 const routes: Routes = [
     {
         path: 'welcome',
-        component: WelcomeComponent
+        loadChildren: "./welcome/welcome.module#WelcomeModule"
     },
     {
         path: 'login',
-        component: LoginComponent
+        loadChildren: "./login/login.module#LoginModule"
     },
     {
         path: 'browse',
@@ -20,11 +16,11 @@ const routes: Routes = [
     },
 	{
         path: 'buy',
-        component: BuyComponent
+        loadChildren: "./buy/buy.module#BuyModule"
     },
 	{
         path: 'sell',
-        component: SellComponent
+        loadChildren: "./sell/sell.module#SellModule"
     },
     {
         path: '',

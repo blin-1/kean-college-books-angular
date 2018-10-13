@@ -12,21 +12,12 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 
 import { NavigationComponent } from './navigation/navigation.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { LoginComponent } from './login/login.component';
-import { BuyComponent } from './buy/buy.component';
-import { SellComponent } from './sell/sell.component';
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent
-    WelcomeComponent,
-    LoginComponent,
-    BuyComponent,
-    SellComponent,
 
   ],
   imports: [
