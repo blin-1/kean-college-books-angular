@@ -1,18 +1,18 @@
 <mat-card>
   
 	  <mat-form-field  appearance="outline" class="kean-full-width">
-		<mat-label>Name</mat-label>
-		<input matInput [formControl]="username" value={{firstName}}>
+		<mat-label id="some-label">Name</mat-label>
+		<input matInput [formControl]="firstName" value={{user.firstName}}  >
 	  </mat-form-field>
 
 	  <mat-form-field appearance="outline" class="kean-full-width">
 		<mat-label>E-Mail</mat-label>
-		<input matInput [formControl]="email" value={{eMail}} type="email">
+		<input matInput [formControl]="email" value={{user.email}} type="email">
 	  </mat-form-field>
 	  
 	  <mat-card-actions class="kean-card-actions">
-		<a mat-stroked-button  *ngIf="showLogon"  color="primary" (click)="onLogon() ">Google Logon</a>
-		<a mat-stroked-button  *ngIf="showLogoff" color="primary" (click)="onLogoff()">Google Logoff</a>
+	  	<a mat-stroked-button  *ngIf="showLogoff " color="primary" (click)="onLogoff()">Google Logoff</a>
+		<a mat-stroked-button  *ngIf="showLogon "  color="primary" (click)="onLogon() ">Google Logon</a>
 	  </mat-card-actions>
 	
 
