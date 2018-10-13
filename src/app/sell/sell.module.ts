@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SellRoutingModule } from './sell-routing.module';
-
-import { MatButtonModule, MatToolbarModule, MatInputModule, MatCardModule} from '@angular/material';
-
+import { MatButtonModule, MatInputModule, MatCardModule} from '@angular/material';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -16,9 +13,7 @@ import { SellComponent } from './sell.component';
     CommonModule,
     SellRoutingModule,
     
-	MatButtonModule,
-	MatToolbarModule,
-	
+	MatButtonModule,	
 	MatCardModule,
 	MatFormFieldModule,
 	MatInputModule,
