@@ -1,6 +1,44 @@
 <mat-card>
-	<p>
-		buy works!
-	</p>
-</mat-card>
+  
+	  <mat-form-field  appearance="outline" class="kean-full-width">
+		<mat-label>ISBN</mat-label>
+		<input matInput [formControl]="fc_isbn" value={{isbn}}>
+	  </mat-form-field>
 
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Title</mat-label>
+		<input matInput [formControl]="fc_title" value={{title}}>
+	  </mat-form-field>
+	  
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Author</mat-label>
+		<input matInput [formControl]="fc_author" value={{author}}>
+	  </mat-form-field>
+	  
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Edition</mat-label>
+		<input matInput [formControl]="fc_edition" value={{edition}}>
+	  </mat-form-field>
+	  
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Asking Price</mat-label>
+		<input matInput [formControl]="fc_askingPrice" value={{askingPrice}}>
+	  </mat-form-field>
+	  
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Seller Notes</mat-label>
+		<input matInput [formControl]="fc_sellerNotes" value={{sellerNotes}}>
+	  </mat-form-field>
+	  
+	  <mat-form-field appearance="outline" class="kean-full-width">
+		<mat-label>Notes</mat-label>
+		<input matInput [formControl]="fc_notes" value={{notes}}>
+	  </mat-form-field>
+	  
+	  
+	  <mat-card-actions class="kean-card-actions">
+		<a mat-stroked-button  color="primary" (click)="onBuy() ">Buy It</a>
+	  </mat-card-actions>
+	
+
+</mat-card>

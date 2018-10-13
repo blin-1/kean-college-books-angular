@@ -1,6 +1,8 @@
 import { environment } from '../../environments/environment';
+import { constants } from '../constants/app-constants';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl} from '@angular/forms';
+import { User } from '../models/user.model';
 
 @Component({
 
@@ -13,6 +15,8 @@ export class LoginComponent {
 
   email				: FormControl;
   username			: FormControl;
+  
+  user				: User = new User();
   
   eMail				: string;  // bindings
   firstName			: string;  // for FormControl
@@ -68,7 +72,7 @@ export class LoginComponent {
 		this.showLogoff = false;
 		this.showLogon = true;
 		this.firstName = null;
-		this.eMail = null;
+		this.eMail = constants.UNKNOWN_USER_EMAIL;
 		this.logoff.emit(this.eMail);
 	}else{
 		let googleUser	= this.auth2.currentUser.get();
