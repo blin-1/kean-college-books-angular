@@ -3,6 +3,10 @@ import { CommonModule } from '@angular/common';
 import { BrowseRoutingModule } from './browse-routing.module';
 import { MatCardModule } from '@angular/material';
 import { MatTableModule} from '@angular/material/table'
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
+import { MatSortModule } from '@angular/material';
 
 import { BrowseComponent } from './browse.component';
 
@@ -12,8 +16,12 @@ import { BrowseComponent } from './browse.component';
     CommonModule,
     BrowseRoutingModule,
 	MatCardModule,
-	MatTableModule
-    
+	MatTableModule,
+	MatFormFieldModule,
+	MatInputModule,
+	MatPaginatorModule,
+	MatSortModule
+
   ],
   declarations: [BrowseComponent]
 })

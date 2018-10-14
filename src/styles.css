@@ -1,20 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.kean-full-width {
+mat-form-field {
   width: 100%;
 }
 
-.kean-card-actions {
+mat-card-actions {
 	text-align: center;
 }
-
-/* .kean-card-fieldset {
-	min-width: 300px;
-  	width: 50%;
-    margin: auto;   
-	border: 2px solid; 
-	border-color: #673ab7;	
-    padding: 20px;
-
-} */
