@@ -7,7 +7,7 @@ export class Book extends Entity {
         
 	constructor(res? : any) {
     	
-    	super();
+    	super(res);
 
     	this.title   = res? res[2] : 'Title';
     	this.author  = res? res[3] : 'Author';
