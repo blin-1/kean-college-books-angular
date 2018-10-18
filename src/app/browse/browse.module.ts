@@ -7,6 +7,7 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
+import { MatCheckboxModule} from '@angular/material/checkbox';
 
 import { BrowseComponent } from './browse.component';
 
@@ -17,6 +18,7 @@ import { BrowseComponent } from './browse.component';
     BrowseRoutingModule,
 	MatCardModule,
 	MatTableModule,
+	MatCheckboxModule,
 	MatFormFieldModule,
 	MatInputModule,
 	MatPaginatorModule,
