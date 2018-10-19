@@ -5,6 +5,8 @@ import { Book  } from '../models/book.model';
 import { Bid   } from '../models/bid.model';
 import { Offer } from '../models/offer.model';
 
+import {BlackboardService} from "../services/blackboard.service";
+
 @Component({
   selector: 'app-buy',
   templateUrl: './buy.component.html',
@@ -24,9 +26,11 @@ export class BuyComponent implements OnInit {
   bid	: Bid   = new Bid();
   ask	: Offer = new Offer(); 
    
-  constructor() {
+  constructor(private blackBoard:  BlackboardService) {
   
-  	this.book.title = "Please select a book from the 'browse' section";
+    if (blackBoard.selectedBook !== null) {
+        this.book = blackBoard.selectedBook;
+    } 
   
   }
 

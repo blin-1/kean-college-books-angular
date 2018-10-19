@@ -5,6 +5,17 @@ table {
 mat-form-field {
   font-size: 14px;
 }
+.mat-column-select {
+  overflow: initial;
+}
+
+.mat-row:hover{
+  background: #f5f5f5;
+}
+
+.mat-row:active, .mat-row:selected {
+  background: #eaeaea;
+}
 
 /* td, th {
   width: 25%;

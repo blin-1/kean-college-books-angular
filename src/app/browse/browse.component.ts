@@ -4,6 +4,8 @@ import {SelectionModel} from '@angular/cdk/collections';
 
 import {Book} from "../models/book.model";
 import {BookService} from "../services/book.service";
+import {BlackboardService} from "../services/blackboard.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-browse',
@@ -21,7 +23,11 @@ export class BrowseComponent implements OnInit {
   @ViewChild(MatPaginator) 	paginator:  MatPaginator;
   @ViewChild(MatSort) 		sort:       MatSort;
   
-  constructor(private bookService: BookService) {};
+  constructor(
+              private bookService: BookService,
+              private blackBoard:  BlackboardService,
+              private router  :    Router
+          ) {};
 
   ngOnInit() {
 
@@ -35,7 +41,7 @@ export class BrowseComponent implements OnInit {
 	const allowMultiSelect = false;
 	this.selection = new SelectionModel<Book>(allowMultiSelect, initialSelection);
   }
-  
+    
   applyFilter(filterValue: string) {
     
 	this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -46,19 +52,23 @@ export class BrowseComponent implements OnInit {
   
   }
   
-  /** Whether the number of selected elements matches the total number of rows. */
+  /** Make a selection */
+  onSelected(book : Book){
+      
+      this.blackBoard.selectedBook = book;
+      this.selection.toggle(book);
+      this.router.navigate(['/buy']);
+      
+  }
+  
+  /** For Multiselect - Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected == numRows;
+
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-  }
 }
 
 
