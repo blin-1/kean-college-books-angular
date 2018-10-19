@@ -4,6 +4,8 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl} from '@angular/forms';
 import { User } from '../models/user.model';
 
+import {BlackboardService} from "../services/blackboard.service";
+
 @Component({
 
   selector: 'app-login',
@@ -23,8 +25,9 @@ export class LoginComponent {
   @Output() logon	: EventEmitter<String> = new EventEmitter();
   @Output() logoff	: EventEmitter<String> = new EventEmitter();
 	
-  constructor() {
+  constructor(private blackboard : BlackboardService) {
 
+    this.user = blackboard.user;  
 	let self = this;	
 	gapi.load('auth2', function() {
 		let signinChanged = function () {
@@ -65,14 +68,14 @@ export class LoginComponent {
 		this.showLogon = true;
 		this.user.firstName = constants.UNKNOWN_USER_NAME;
 		this.user.email = constants.UNKNOWN_USER_EMAIL;
-		this.logoff.emit(this.user.email);
+		//this.logoff.emit(this.user.email);
 	}else{
 		let googleUser	= this.auth2.currentUser.get();
 		this.showLogoff = true;
 		this.showLogon = false;
 		this.user.firstName = googleUser.getBasicProfile().getGivenName();
 		this.user.email = googleUser.getBasicProfile().getEmail();
-		this.logon.emit(this.user.email);
+		//this.logon.emit(this.user.email);
 	};
 	// this should not be necessary, but it is.
 	this.email.patchValue(this.user.email);

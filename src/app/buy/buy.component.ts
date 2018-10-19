@@ -22,16 +22,14 @@ export class BuyComponent implements OnInit {
   sellerNotes		: FormControl = new FormControl({value: null, disabled: true});
   notes				: FormControl = new FormControl();
     
-  book	: Book  = new Book();
+  book	: Book;
   bid	: Bid   = new Bid();
   ask	: Offer = new Offer(); 
    
-  constructor(private blackBoard:  BlackboardService) {
+  constructor(private blackboard:  BlackboardService) {
   
-    if (blackBoard.selectedBook !== null) {
-        this.book = blackBoard.selectedBook;
-    } 
-  
+        this.book = blackboard.bookToBuy;
+        
   }
 
   ngOnInit() {

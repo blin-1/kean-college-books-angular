@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RouteGuardService } from "src/app/services/route-guard.service";
 
 const routes: Routes = [
     {
@@ -16,11 +17,13 @@ const routes: Routes = [
     },
 	{
         path: 'buy',
-        loadChildren: "./buy/buy.module#BuyModule"
+        loadChildren: "./buy/buy.module#BuyModule",
+        canActivate: [RouteGuardService]
     },
 	{
         path: 'sell',
-        loadChildren: "./sell/sell.module#SellModule"
+        loadChildren: "./sell/sell.module#SellModule",
+        canActivate: [RouteGuardService]
     },
     {
         path: '',

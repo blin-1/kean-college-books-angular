@@ -25,7 +25,7 @@ export class BrowseComponent implements OnInit {
   
   constructor(
               private bookService: BookService,
-              private blackBoard:  BlackboardService,
+              private blackboard:  BlackboardService,
               private router  :    Router
           ) {};
 
@@ -55,8 +55,8 @@ export class BrowseComponent implements OnInit {
   /** Make a selection */
   onSelected(book : Book){
       
-      this.blackBoard.selectedBook = book;
       this.selection.toggle(book);
+      this.blackboard.bookToBuy = book;
       this.router.navigate(['/buy']);
       
   }
