@@ -18,28 +18,28 @@ import { Subscription } from "rxjs";
 
 export class LoginComponent {
 
-  email				: FormControl = new FormControl({value: this.blackboard.user.email,disabled: true});
-  firstName			: FormControl = new FormControl({value: this.blackboard.user.firstName,disabled: true});  
+  user              : User        = this.blackboard.user;
+  email				: FormControl = new FormControl({value: this.user.email,disabled: true});
+  firstName			: FormControl = new FormControl({value: this.user.firstName,disabled: true});  
   showLogon			: boolean = true;
   showLogoff		: boolean = false;
-  auth2				: any; //this will hold our Google sign-In object
   subscription      : Subscription;  	
 
   constructor(private blackboard : BlackboardService, private authenticator : AuthenticationService) {
 
-    this.subscription = authenticator.userChanged$.subscribe(
+      this.subscription = authenticator.userChanged$.subscribe(
         user => {                   
                 this.setState(user);
                 this.patchForm();
                 }
         );
-
-    this.setState(this.blackboard.user);
+      this.setState(this.user);
   
   }
         
   setState(user: User) {
       
+      this.user = user;
       if (!user.isLoggedIn()){
           this.showLogoff = false;
           this.showLogon = true;    
@@ -47,8 +47,8 @@ export class LoginComponent {
           this.showLogoff = true;
           this.showLogon = false;
       };
-      this.email.patchValue    (this.blackboard.user.email);
-      this.firstName.patchValue(this.blackboard.user.firstName);
+      this.email.patchValue    (this.user.email);
+      this.firstName.patchValue(this.user.firstName);
   }
   
   patchForm(): any {
