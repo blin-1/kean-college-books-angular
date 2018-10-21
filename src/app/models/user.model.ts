@@ -1,7 +1,7 @@
 import { Entity } from './entity.model';
 import { constants } from '../constants/app-constants';
 
-export class User extends Entity {
+export class User extends Entity { // extends for future persistence 
 
         userName: string;
         password: string;
@@ -10,14 +10,13 @@ export class User extends Entity {
         firstName: string;
         lastName: string;
         
-        constructor(){
+        constructor(firstName? : string, email? : string){
         	
         	super();
-			this.email 		= constants.UNKNOWN_USER_EMAIL;
-			this.firstName	= constants.UNKNOWN_USER_NAME;
+			this.email 		= email?         email : constants.UNKNOWN_USER_EMAIL;
+			this.firstName	= firstName? firstName : constants.UNKNOWN_USER_NAME;
         
         }
-        
         
 	    isLoggedIn () {
 	    	return this.email !== constants.UNKNOWN_USER_EMAIL; 
