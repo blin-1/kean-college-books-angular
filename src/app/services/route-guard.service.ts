@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
 export class RouteGuardService implements CanActivate{
     
     requestedUrl : string = null;
@@ -14,22 +15,23 @@ export class RouteGuardService implements CanActivate{
         return this.requestedUrl !== null? true : false;
         
     };
+
+    conditionalForward() {
+
+        if (this.urlWasRequested()){
+            this.router.navigateByUrl(this.requestedUrl);
+            this.requestedUrl = null;            
+        }
+        
+    }
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
       
         if (this.blackboard.user.isLoggedIn()){
-            if (this.urlWasRequested()){
-                //FIXME
-                /**
-                this.router.navigate([this.requestedUrl]);
-                this.requestedUrl = null;
-                */
-            }
-
             return true;
         }
         this.requestedUrl=state.url;
-        this.router.navigate(['/login']);
+        this.router.navigateByUrl('/login');
         return false;        
     }
 

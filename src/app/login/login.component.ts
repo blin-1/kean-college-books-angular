@@ -6,8 +6,10 @@ import { User } from 'src/app/models/user.model';
 
 import {BlackboardService} from "src/app/services/blackboard.service";
 import {AuthenticationService} from "src/app/services/authentication.service";
+import {RouteGuardService} from "src/app/services/route-guard.service";
 
 import { Subscription } from "rxjs";
+
 
 @Component({
 
@@ -25,16 +27,20 @@ export class LoginComponent {
   showLogoff		: boolean = false;
   subscription      : Subscription;  	
 
-  constructor(private blackboard : BlackboardService, private authenticator : AuthenticationService) {
+  constructor(private blackboard : BlackboardService, 
+              private authenticator : AuthenticationService,
+              private routeGuard : RouteGuardService) {
 
       this.subscription = authenticator.userChanged$.subscribe(
-        user => {                   
+        user => { 
+                this.routeGuard.conditionalForward();
+                // if not
                 this.setState(user);
                 this.patchForm();
                 }
         );
       this.setState(this.user);
-  
+        
   }
         
   setState(user: User) {
