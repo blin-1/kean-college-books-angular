@@ -9,12 +9,11 @@ import { Subject } from "rxjs";
 })
 
 export class AuthenticationService {
-
-  private userSubject = new Subject<User>(); 
-  private auth2 : any;                            //this will hold our Google sign-In object 
   
+  private userSubject = new Subject<User>(); 
   userChanged$ = this.userSubject.asObservable(); // this is an observable to watch for user changes  
 
+  private auth2 : any;                            //this will hold our Google sign-In object 
   constructor(private blackboard : BlackboardService) {
       
       let self = this;    

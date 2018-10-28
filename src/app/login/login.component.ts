@@ -6,9 +6,6 @@ import { User } from 'src/app/models/user.model';
 
 import {BlackboardService} from "src/app/services/blackboard.service";
 import {AuthenticationService} from "src/app/services/authentication.service";
-import {RouteGuardService} from "src/app/services/route-guard.service";
-
-import { Subscription } from "rxjs";
 
 
 @Component({
@@ -20,27 +17,29 @@ import { Subscription } from "rxjs";
 
 export class LoginComponent {
 
-  user              : User        = this.blackboard.user;
-  email				: FormControl = new FormControl({value: this.user.email,disabled: true});
-  firstName			: FormControl = new FormControl({value: this.user.firstName,disabled: true});  
+  user              : User;
+  email				: FormControl;// = new FormControl({value: this.user.email,disabled: true});
+  firstName			: FormControl;// = new FormControl({value: this.user.firstName,disabled: true});  
   showLogon			: boolean = true;
   showLogoff		: boolean = false;
-  subscription      : Subscription;  	
+  
+  constructor(private blackboard    : BlackboardService, 
+              private authenticator : AuthenticationService) {
 
-  constructor(private blackboard : BlackboardService, 
-              private authenticator : AuthenticationService,
-              private routeGuard : RouteGuardService) {
-
-      this.subscription = authenticator.userChanged$.subscribe(
-        user => { 
-                this.routeGuard.conditionalForward();
-                // if not
-                this.setState(user);
-                this.patchForm();
-                }
-        );
+      authenticator.userChanged$.subscribe(
+            user => { 
+                    this.setState(user);
+                    // This is a hack to cause buttons hide and show properly - with *ngIf
+                    // It pretends to click on a form field label (anything clickable really), which causes the recalculate of ngIf
+                    let element : HTMLElement = document.getElementById('some-label') as HTMLElement;
+                    element.click();  
+                    }
+      );
+      this.user         = blackboard.user;
+      this.email        = new FormControl({value: this.user.email,disabled: true});
+      this.firstName    = new FormControl({value: this.user.firstName,disabled: true});  
       this.setState(this.user);
-        
+      
   }
         
   setState(user: User) {
@@ -53,17 +52,7 @@ export class LoginComponent {
           this.showLogoff = true;
           this.showLogon = false;
       };
-      this.email.patchValue    (this.user.email);
-      this.firstName.patchValue(this.user.firstName);
-  }
-  
-  patchForm(): any {
-      
-      // This is a hack to cause buttons hide and show properly - with *ngIf
-      // It pretends to click on a form field label (anything clickable), which causes the recalculate of ngIf
-      // apparently 
-      let element : HTMLElement = document.getElementById('some-label') as HTMLElement;
-      element.click();      
+
   }
   
   onLogon() {	  

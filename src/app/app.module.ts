@@ -34,7 +34,7 @@ import { BookService } from './services/book.service';
 	HttpClientModule
 	
   ],
-  providers: [BookService],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
