@@ -11,10 +11,10 @@ This is a work in progress
 
 ## Dependencies
 
-npm i --save gapi<br>
-npm i --save @types/gapi<br>
-npm i --save @types/gapi.auth2<br>
-npm i --save @angular/material<br>
+npm i gapi<br>
+npm i @types/gapi<br>
+npm i @types/gapi.auth2<br>
+npm i @angular/material<br>
 
 <br>
 <p>You will also need to obtain Google auth2 credentials at https://console.developers.google.com/apis/credentials and update environments/environment.ts with it:
